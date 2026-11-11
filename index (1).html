@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="color-scheme" content="light" />
+<title>Graphic Novel Prompt Generator</title>
+<style>
+:root{--bg:#f7f9f4;--surface:#fff;--soft:#eff5ea;--stroke:#d4e3cb;--ink:#192238;--muted:#63738b;--primary:#1d2740;--blue:#377bf5;--green:#23854e;--focus:#75a6e9;--error:#b52e38;--radius:15px}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;font-size:14px;line-height:1.55}button,input,select,textarea{font:inherit}button{cursor:pointer}button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,a:focus-visible{outline:3px solid var(--focus);outline-offset:2px}.wrap{max-width:1050px;margin:auto;padding:32px 20px 60px}.eyebrow{font-weight:800;letter-spacing:.12em;font-size:11px;text-transform:uppercase;color:var(--green)}h1{font-size:clamp(27px,4vw,42px);letter-spacing:-.045em;line-height:1.13;margin:8px 0 12px}h2{font-size:21px;letter-spacing:-.035em;margin:0 0 6px}.intro{font-size:15px;color:var(--muted);margin:0 0 25px;max-width:720px}.tagline{display:inline-flex;gap:8px;align-items:center;padding:7px 12px;border-radius:100px;border:1px solid var(--stroke);background:var(--soft);font-size:12px;color:#3a6944}.flow{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:20px 0 24px}.flow-card{background:white;border:1px solid var(--stroke);padding:15px 16px;border-radius:12px}.flow-card strong{display:block;font-size:13px}.flow-card small{color:var(--muted);display:block;margin-top:4px}.step-dot{display:inline-grid;place-items:center;background:var(--blue);color:white;border-radius:8px;width:27px;height:27px;margin-right:7px;font-size:13px}.flow-card:nth-child(2) .step-dot{background:#ef4944}.flow-card:nth-child(3) .step-dot{background:#28a661}.section{background:white;border:1px solid var(--stroke);border-radius:var(--radius);margin-bottom:18px;overflow:hidden}.section-head{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:17px 19px;border-bottom:1px solid #e8eee5}.section-head h2{margin:0}.section-body{padding:18px}.help{color:var(--muted);font-size:12px;margin:4px 0 0}.preset-bar{padding:16px;border-radius:12px;background:var(--soft);border:1px solid var(--stroke);margin-bottom:16px}.preset-controls{display:grid;grid-template-columns:1fr 1fr auto;gap:10px;align-items:end}.preset-controls label{margin:0}.field{min-width:0}.label{display:block;font-size:12px;font-weight:750;margin:0 0 5px;color:#172438}.required{color:#e2443e}.optional{font-size:11px;color:var(--muted);font-weight:500}input,select,textarea{display:block;width:100%;background:white;border:1px solid #c7d9c4;border-radius:8px;padding:11px 12px;color:var(--ink);min-height:43px}textarea{min-height:89px;resize:vertical;font-family:inherit}textarea::placeholder,input::placeholder{color:#8994a1}input:focus,select:focus,textarea:focus{border-color:var(--focus);outline:2px solid #cde1ff;outline-offset:0}.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.span2{grid-column:1/-1}.actions{display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:20px}.btn{background:var(--primary);color:white;border:1px solid transparent;border-radius:9px;padding:10px 14px;min-height:40px;font-weight:700;text-decoration:none;display:inline-flex;justify-content:center;align-items:center;gap:7px;white-space:nowrap}.btn:hover{filter:brightness(1.09)}.btn.primary{padding:12px 24px;border-radius:100px}.btn.outline{background:white;color:var(--ink);border-color:var(--stroke)}.btn.blue{background:var(--blue)}.btn.green{background:var(--green)}.btn.tiny{padding:7px 11px;min-height:32px;font-size:12px}.style-hint{font-size:12px;color:#4e6270;background:#f4f8f3;border:1px solid #e2ebe0;border-radius:8px;padding:9px 11px;margin-top:8px}.style-hint[hidden],.hidden{display:none!important}.error{margin:12px 0 0;color:var(--error);font-size:12px;font-weight:650}.output-grid{display:grid;grid-template-columns:1fr;gap:16px}.output{border:1px solid #b7d6be;border-radius:12px;background:#f6fcf5;padding:13px}.output-head{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:8px}.output h3{font-size:15px;margin:0;color:#218247}.output-buttons{display:flex;gap:7px;flex-wrap:wrap}.code-output{background:#1b2036;color:#e4e9ff;border:1px solid #13182d;border-radius:9px;width:100%;min-height:170px;max-height:390px;overflow:auto;white-space:pre-wrap;overflow-wrap:anywhere;padding:17px;font:12px/1.67 ui-monospace,SFMono-Regular,Consolas,"Liberation Mono",monospace;margin:0;user-select:text}.code-output.short{min-height:112px;max-height:200px}.notice{background:#e9f3ff;border:1px solid #c6ddff;border-radius:12px;padding:13px 15px;color:#2e4e72;font-size:13px;margin:16px 0}.guide-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.guide-card{background:#fff;border:1px solid var(--stroke);padding:16px;border-radius:12px}.guide-card .num{background:var(--blue);color:white;font-weight:800;border-radius:9px;display:inline-grid;place-items:center;width:29px;height:29px;margin-bottom:8px}.guide-card:nth-child(2) .num{background:#ed4841}.guide-card:nth-child(3) .num{background:#2ca663}.guide-card h3{font-size:14px;margin:0 0 5px}.guide-card p{font-size:12px;color:var(--muted);margin:0}.guide-card a{color:#255fba}.footer{font-size:12px;color:var(--muted);text-align:center;padding-top:14px}.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(15px);opacity:0;pointer-events:none;z-index:10;background:#1b2936;color:white;border-radius:30px;padding:10px 18px;box-shadow:0 8px 28px #0003;transition:.18s}.toast.show{transform:translateX(-50%) translateY(0);opacity:1}.counter{font-size:11px;color:var(--muted);text-align:right;margin-top:5px}@media(max-width:720px){.wrap{padding:20px 12px 40px}.flow,.guide-grid{grid-template-columns:1fr}.preset-controls{grid-template-columns:1fr}.form-grid{grid-template-columns:1fr}.span2{grid-column:auto}.section-body{padding:13px}.section-head{padding:14px}.output-head{align-items:flex-start}.btn.primary{width:100%}.actions .btn.outline{width:100%}.flow{gap:7px}.flow-card{padding:12px}.section-head h2{font-size:18px}}
+</style>
+</head>
+<body>
+<main class="wrap">
+  <div class="tagline">✦ One story · Two prompts · Three tools</div>
+  <h1>Graphic Novel Prompt Generator</h1>
+  <p class="intro">Turn a story idea or lesson into a detailed graphic novel script prompt for Gemini, plus a matching Slides prompt for NotebookLM. Enter your details once, then copy each prompt when you need it.</p>
+
+  <div class="flow" aria-label="Three-part production workflow">
+    <div class="flow-card"><strong><span class="step-dot">1</span>Gemini writes</strong><small>Generate a structured graphic novel script.</small></div>
+    <div class="flow-card"><strong><span class="step-dot">2</span>NotebookLM draws</strong><small>Turn your script into visual slides.</small></div>
+    <div class="flow-card"><strong><span class="step-dot">3</span>Google Vids narrates</strong><small>Turn your slides into a narrated video.</small></div>
+  </div>
+
+  <section class="section" aria-labelledby="form-title">
+    <div class="section-head"><div><h2 id="form-title">Build your prompts</h2><p class="help">Fields marked * are required. Sample stories are fully editable.</p></div></div>
+    <div class="section-body">
+      <div class="preset-bar">
+        <div class="preset-controls">
+          <div class="field"><label class="label" for="sampleCategory">Sample category</label><select id="sampleCategory"><option value="">Choose a category…</option></select></div>
+          <div class="field"><label class="label" for="sampleStory">Sample story</label><select id="sampleStory" disabled><option value="">Choose a story…</option></select></div>
+          <button type="button" class="btn outline" id="clearForm">✕ Clear</button>
+        </div>
+      </div>
+      <form id="promptForm" novalidate>
+        <div class="form-grid">
+          <div class="field span2"><label class="label" for="concept">1. Story concept 💡 — plot, lesson, or topic <span class="required">*</span></label><textarea id="concept" required placeholder="e.g. A young inventor discovers why her prototype behaves strangely…"></textarea></div>
+          <div class="field"><label class="label" for="audience">2. Target audience 🎯 — who is reading this? <span class="required">*</span></label><input id="audience" required placeholder="e.g. 9–10 year olds exploring the topic for the first time" /></div>
+          <div class="field"><label class="label" for="pages">3. Page count <span class="required">*</span> <span class="optional">(1–20)</span></label><input id="pages" type="number" min="1" max="20" step="1" value="6" required /></div>
+          <div class="field span2"><label class="label" for="cast">4. The cast 👤 — consistent character descriptions <span class="required">*</span></label><textarea id="cast" required placeholder="e.g. Aisyah — age 9, yellow raincoat, braided hair, always carrying a notebook…"></textarea><p class="help">Describe appearance, distinctive clothes, props, and ages. Repeatable descriptions help the AI keep characters visually consistent.</p></div>
+          <div class="field"><label class="label" for="artStyle">5. Art style 🎨 <span class="required">*</span></label><select id="artStyle" required><option value="">Choose an art style…</option></select><div class="style-hint" id="styleHint" hidden></div></div>
+          <div class="field"><label class="label" for="tone">6. Tone <span class="required">*</span></label><input id="tone" required placeholder="e.g. Warm, encouraging and curious; no villains" /></div>
+          <div class="field span2 hidden" id="customStyleWrap"><label class="label" for="customStyle">Describe your custom art style <span class="required">*</span></label><input id="customStyle" placeholder="e.g. Hand-drawn botanical ink and watercolor, muted earth colors" /><p class="help">This exact style description will be used in both prompts.</p></div>
+          <div class="field"><label class="label" for="language">7. Language <span class="required">*</span></label><select id="language"><option value="English">English</option><option value="Bahasa Melayu">Bahasa Melayu</option><option value="Mandarin Chinese">Mandarin Chinese</option><option value="English with natural Bahasa Malaysia phrases">English with natural Bahasa Malaysia phrases</option><option value="Bahasa Melayu with natural English phrases">Bahasa Melayu with natural English phrases</option><option value="custom">Custom language…</option></select></div>
+          <div class="field hidden" id="customLanguageWrap"><label class="label" for="customLanguage">Custom language instructions <span class="required">*</span></label><input id="customLanguage" placeholder="e.g. Simple Arabic with Malay glossary" /></div>
+        </div>
+        <p id="errorMessage" class="error hidden" role="alert"></p>
+        <div class="actions"><button class="btn primary" type="submit">⚙ Generate Both Prompts</button><button type="button" class="btn outline" id="resetPrompts">Clear generated outputs</button></div>
+      </form>
+    </div>
+  </section>
+
+  <section class="section hidden" id="outputs" aria-label="Generated prompts">
+    <div class="section-head"><div><h2>Your generated prompts</h2><p class="help">Copy Prompt 1 to Gemini first. When Gemini finishes the script, put that script in NotebookLM and use Prompt 2 for Slides.</p></div></div>
+    <div class="section-body output-grid">
+      <article class="output"><div class="output-head"><h3>📋 Prompt 1 — Gemini Script</h3><div class="output-buttons"><button class="btn blue tiny" type="button" id="copyScript">Copy script prompt</button><a class="btn green tiny" href="https://gemini.google.com/app" target="_blank" rel="noopener noreferrer">Open Gemini ↗</a></div></div><pre class="code-output" id="scriptOutput" tabindex="0"></pre><div class="counter" id="scriptCount"></div></article>
+      <article class="output"><div class="output-head"><h3>📑 Prompt 2 — NotebookLM Slides</h3><div class="output-buttons"><button class="btn blue tiny" type="button" id="copySlides">Copy Slides prompt</button><a class="btn green tiny" href="https://notebooklm.google.com/" target="_blank" rel="noopener noreferrer">Open NotebookLM ↗</a></div></div><pre class="code-output short" id="slidesOutput" tabindex="0"></pre></article>
+      <div class="notice">ℹ️ <strong>Size is selected when generating Slides.</strong> The prompts do not force a 16:9 layout. Check available layout settings in the tool before rendering.</div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="guide-title">
+    <div class="section-head"><h2 id="guide-title">How to turn your story into a video</h2></div>
+    <div class="section-body"><div class="guide-grid">
+      <div class="guide-card"><span class="num">1</span><h3>Generate the script</h3><p>Copy <strong>Prompt 1</strong> into <a href="https://gemini.google.com/app" target="_blank" rel="noopener noreferrer">Gemini</a>. Review the script, edit as needed, and copy the final script text.</p></div>
+      <div class="guide-card"><span class="num">2</span><h3>Create graphic novel slides</h3><p>Open <a href="https://notebooklm.google.com/" target="_blank" rel="noopener noreferrer">NotebookLM</a>, create a notebook, and paste the finished script as a source. In Studio → Slides, open the customization prompt and paste <strong>Prompt 2</strong>. Choose an available slide size and generate; download the PPTX.</p></div>
+      <div class="guide-card"><span class="num">3</span><h3>Turn slides into a video</h3><p>Upload the PPTX to <a href="https://drive.google.com/" target="_blank" rel="noopener noreferrer">Google Drive</a>. In <a href="https://vids.google.com/" target="_blank" rel="noopener noreferrer">Google Vids</a>, use an available Slides-to-video workflow, add narration and review the result. Features depend on your account.</p></div>
+    </div></div>
+  </section>
+  <p class="footer">V1.0 · All prompt generation happens locally in your browser. No login, server, or API key required.</p>
+</main>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script>
+'use strict';
+const STYLES = [
+  ['Comics & Manga','Modern Middle-Grade','Clean ink lines, rounded edges, pastel colors, expressive faces and readable panels'],
+  ['Comics & Manga','Kid-Lit Chaotic','Thick marker lines, crayon texture, primary colors, playful squash-and-stretch poses'],
+  ['Comics & Manga','Modern Shonen Manga','Black and white, screentones, speed lines, dynamic angles and exaggerated expressions'],
+  ['Comics & Manga','Webtoon','Vertical-flow composition, cel shading, digital glow and vibrant saturation'],
+  ['Comics & Manga','Silver Age Superhero','Vintage 1960s comic aesthetic, Ben-Day dots, heavy outlines and primary colors'],
+  ['Comics & Manga','Ligne Claire','Equal-width outlines, flat colors, no hatching and clear architectural perspective'],
+  ['Comics & Manga','Pop Art','Bold outlines, saturated block colors, halftone dots and energetic graphic shapes'],
+  ['Cinematic & Drama','Cinematic Fantasy','Fully painted backgrounds, atmospheric lighting, sun shafts and soft glow effects'],
+  ['Cinematic & Drama','Cyberpunk/Tech-Noir','Neon cyan and magenta, wet pavement reflections, dramatic silhouettes and chromatic aberration'],
+  ['Cinematic & Drama','Neo-Noir','High-contrast black and white, chiaroscuro, deep shadows and a single deliberate spot color'],
+  ['Cinematic & Drama','Gothic Minimalist','Angular shapes, heavy solid blacks, stark negative space and muted olive/grey earth tones'],
+  ['Storybook & Creative','Vintage Storybook','Warm watercolor washes, soft outlines, gentle rounded shapes and cozy lighting'],
+  ['Storybook & Creative','Paper Cut-Out','Layered construction paper, scissor-cut edges, subtle cast shadows and tactile textures'],
+  ['Storybook & Creative','Chibi/Kawaii','Small cute bodies, oversized heads, soft pastel colors and expressive eyes'],
+  ['Storybook & Creative','Claymation','Handmade 3D clay surfaces, visible thumbprints, tiny imperfections and shallow depth of field'],
+  ['Storybook & Creative','3D Animated Cartoon','Stylized dimensional characters, expressive facial poses, polished soft lighting and depth'],
+  ['Artistic & Experimental','Woodcut/Folk Horror','Carved block-print lines, thick hatching, archaic figures and restricted earthy palette'],
+  ['Artistic & Experimental','Risograph/Indie Zine','Grainy ink textures, limited neon spot colors, imperfect registration and zine composition'],
+  ['Artistic & Experimental','Mixed Media','Torn paper collage, layered textures, found materials and grunge marks'],
+  ['Artistic & Experimental','Painted/Prestige','Painterly gouache or oil appearance, naturalistic anatomy, nuanced light and minimal visible outlines'],
+  ['Educational & Digital','Flat Vector / Educational Explainer','Simple geometric vector shapes, clear labels, clean flat colors and uncluttered teaching visuals'],
+  ['Educational & Digital','Isometric Illustration','Clean isometric projections, diagrammatic 3D objects, organized scenes and informative details'],
+  ['Educational & Digital','Pixel Art','Deliberate pixel grid, limited retro palette, crisp sprites and 16-bit game-like environments'],
+  ['Educational & Digital','Blueprint','Technical drafting lines, gridded backgrounds, white/cyan linework and labeled diagrams'],
+  ['Educational & Digital','Vector Infographic','Precise shapes, visual hierarchy, simple icons, color-coded information and readable callouts']
+];
+const SAMPLES = [
+{category:'Horror & Comedy',title:'The Midnight Lift',concept:'Every night at 12:07 a.m., the lift in an old apartment block stops at a floor that does not exist. A nervous food-delivery rider follows a mysterious delivery request and discovers the ghost is simply desperate for someone to fix the broken lift music. Keep the suspense genuine until the ridiculous reveal.',audience:'Young adults',pages:7,cast:'Danish — 23, Malaysian delivery rider, tousled black hair, oversized orange rain jacket, black cargo pants, battered black helmet and a silver insulated delivery bag. Madam Suri — translucent elderly ghost with a neat lavender cardigan, silver bob haircut, pearl earrings and an expression of great impatience.',style:'Gothic Minimalist',tone:'Eerie suspense with dry, absurd comic relief and a playful resolution.',language:'English with natural Bahasa Malaysia phrases'},
+{category:'Mystery & Comedy',title:'The Case of the Vanishing Trophy',concept:'A school’s prized innovation trophy disappears hours before an awards ceremony. The student journalism club investigates suspicious footprints, a tampered display case and contradictory witness accounts. Present the clues like a serious detective story, then reveal the trophy has been repurposed as a dramatic prop for a rehearsal. Use one recurring turquoise accent as a visual clue.',audience:'Teenagers and general Malaysian audiences',pages:8,cast:'Nisa — 17, Malay student reporter, dark teal tudung, white school shirt, navy skirt, canvas shoes and a small recorder. Arjun — 17, Indian student photographer, curly hair, round black glasses, white school shirt, navy trousers and a compact camera. Cikgu Lim — 40s, Chinese drama teacher, short wavy hair, charcoal cardigan, patterned scarf and a canvas tote bag.',style:'Neo-Noir',tone:'Straight-faced investigative mystery with a light-hearted final twist.',language:'English with natural Bahasa Malaysia phrases'},
+{category:'Science',title:'Where Did My Shadow Go?',concept:'A child notices her shadow changing size and direction during a sunny afternoon. With help from her grandfather, she tests what happens when a light source moves and learns the basic relationship between light, objects and shadows. Keep each experiment observable and scientifically accurate.',audience:'Children aged 9–10 learning about light and shadows',pages:6,cast:'Hana — 10, curious child with shoulder-length dark hair in two clips, coral t-shirt, denim overalls and red sneakers, carrying a small sketchbook. Tok Wan — 68, kind grandfather with white moustache, thin-rimmed spectacles, cream short-sleeve shirt, brown trousers and a wooden walking stick.',style:'Vintage Storybook',tone:'Warm, playful, encouraging and easy to read aloud; discovery through simple experiments.',language:'English with natural Bahasa Malaysia phrases'},
+{category:'Technology',title:'A Day in a Smart City',concept:'A student visits a smart city and discovers how traffic lights, sensors and connected devices share information to help people. Explain the Internet of Things through a day of relatable situations.',audience:'Diploma students new to IoT',pages:8,cast:'Iman — 19, short black hair, teal hoodie, dark jeans, white sneakers and a sling bag. Nuri — friendly floating smart-city guide, rounded square blue screen face with expressive white eyes, tiny antenna and yellow side lights.',style:'Isometric Illustration',tone:'Curious, practical, lively, and factually clear.',language:'English'},
+{category:'Engineering',title:"The Circuit That Wouldn't Work",concept:'Two engineering students troubleshoot an LED circuit that refuses to light. They learn to check connections, polarity and measurements systematically rather than guessing.',audience:'First-semester electronics diploma students',pages:8,cast:'Sara — 18, black hijab, forest-green lab jacket, dark trousers, safety glasses. Hafiz — 18, short curly hair, blue lab jacket, safety glasses, carrying a digital multimeter. The LED circuit — red LED, breadboard, jumper wires and a 9V battery.',style:'Modern Middle-Grade',tone:'Problem-solving adventure, friendly humor, practical troubleshooting.',language:'Bahasa Melayu with natural English phrases'},
+{category:'Environment',title:'The Last Plastic Bottle',concept:'A discarded plastic bottle travels from a busy street into a drain and river, showing how litter affects ecosystems and what ordinary people can do to prevent it.',audience:'Lower secondary students',pages:7,cast:'Mira — 13, shoulder-length dark hair, orange school sports shirt, navy track pants, canvas shoes. Botol — clear slightly crumpled plastic bottle with an expressive face and a blue cap.',style:'Paper Cut-Out',tone:'Thoughtful and hopeful, with clear practical actions instead of guilt.',language:'Bahasa Melayu'},
+{category:'History',title:'From Steam Engines to AI',concept:'Take learners on a short journey through the industrial revolutions, from steam and mechanization to electricity, computers, automation and artificial intelligence, highlighting how work changed at each stage.',audience:'Diploma students exploring industrial revolutions',pages:10,cast:'Nadia — 19, wavy black hair tied back, mustard jacket, black trousers and a digital wristwatch. Guide Bot — a small hovering white and blue robot with a round display face.',style:'Pop Art',tone:'Energetic, accurate, accessible and inspiring.',language:'English'},
+{category:'Workplace Training',title:'The Safety Incident',concept:'A near miss in a workshop turns into a learning moment about hazard identification, reporting and prevention. Show the consequences without sensationalizing the incident.',audience:'Adult workplace safety trainees',pages:8,cast:'Amin — 30, navy work coveralls, yellow hard hat, clear safety glasses and black safety boots. Mei — 35, orange high-visibility vest, white hard hat, black trousers and safety boots.',style:'Flat Vector / Educational Explainer',tone:'Professional, practical, calm and safety-focused.',language:'English'}
+];
+const STYLE_DB = `The Art Style Database
+
+You possess knowledge of these distinct visual styles. Include the chosen style's Key Visual Keywords in the "Style Note" of every page.
+
+${[...new Set(STYLES.map(x=>x[0]))].map(cat=>`${cat}: ${STYLES.filter(x=>x[0]===cat).map(x=>`${x[1]} (${x[2]})`).join(' · ')}`).join('\n\n')}
+
+If a custom art style is selected, use the user's exact style description as the visual style specification and repeat its defining attributes in each page's Style Note.`;
+const $ = id=>document.getElementById(id);
+const controls={concept:$('concept'),audience:$('audience'),pages:$('pages'),cast:$('cast'),artStyle:$('artStyle'),customStyle:$('customStyle'),tone:$('tone'),language:$('language'),customLanguage:$('customLanguage')};
+const escOption=(sel,value,label)=>{const el=document.createElement('option');el.value=value;el.textContent=label;sel.appendChild(el)};
+for(const category of [...new Set(STYLES.map(s=>s[0]))]){const group=document.createElement('optgroup');group.label=category;STYLES.filter(s=>s[0]===category).forEach(s=>escOption(group,s[1],s[1]));controls.artStyle.appendChild(group)}
+escOption(controls.artStyle,'custom','✏ Custom Art Style…');
+[...new Set(SAMPLES.map(s=>s.category))].forEach(cat=>escOption($('sampleCategory'),cat,cat));
+$('sampleCategory').addEventListener('change',()=>{const cat=$('sampleCategory').value;const sel=$('sampleStory');sel.replaceChildren();escOption(sel,'','Choose a story…');SAMPLES.forEach((s,i)=>{if(s.category===cat)escOption(sel,String(i),s.title)});sel.disabled=!cat});
+$('sampleStory').addEventListener('change',()=>{const s=SAMPLES[Number($('sampleStory').value)];if($('sampleStory').value===''||!s)return;for(const key of ['concept','audience','pages','cast','tone','language'])controls[key].value=s[key];controls.artStyle.value=s.style;updateCustomFields();clearError();invalidateOutputs();showToast('Sample loaded — you can edit every field.')});
+function updateCustomFields(){const customStyle=controls.artStyle.value==='custom';$('customStyleWrap').classList.toggle('hidden',!customStyle);controls.customStyle.required=customStyle;const customLanguage=controls.language.value==='custom';$('customLanguageWrap').classList.toggle('hidden',!customLanguage);controls.customLanguage.required=customLanguage;const entry=STYLES.find(x=>x[1]===controls.artStyle.value);$('styleHint').hidden=!entry;$('styleHint').textContent=entry?'Visual keywords: '+entry[2]:''}
+controls.artStyle.addEventListener('change',()=>{updateCustomFields();invalidateOutputs()});controls.language.addEventListener('change',()=>{updateCustomFields();invalidateOutputs()});
+let hasOutputs=false;function invalidateOutputs(){if(!hasOutputs)return;$('outputs').classList.add('hidden');hasOutputs=false}
+Object.values(controls).forEach(c=>c.addEventListener('input',()=>{clearError();invalidateOutputs()}));
+function clearError(){$('errorMessage').classList.add('hidden');$('errorMessage').textContent=''}
+function error(msg,el){$('errorMessage').textContent=msg;$('errorMessage').classList.remove('hidden');el?.focus();}
+let toastTimer;function showToast(msg){const t=$('toast');t.textContent=msg;t.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>t.classList.remove('show'),2300)}
+function clearForm(){Object.values(controls).forEach(c=>c.value='');controls.pages.value='6';controls.language.value='English';$('sampleCategory').value='';$('sampleStory').replaceChildren();escOption($('sampleStory'),'','Choose a story…');$('sampleStory').disabled=true;updateCustomFields();clearError();invalidateOutputs();$('concept').focus();showToast('Form cleared.')}
+$('clearForm').addEventListener('click',clearForm);
+$('resetPrompts').addEventListener('click',()=>{$('outputs').classList.add('hidden');hasOutputs=false;showToast('Generated outputs cleared.')});
+function getData(){const d=Object.fromEntries(Object.entries(controls).map(([k,v])=>[k,v.value.trim()]));if(!d.concept){error('Please enter a story concept.',controls.concept);return null}if(!d.audience){error('Please enter a target audience.',controls.audience);return null}const n=Number(d.pages);if(d.pages===''||!Number.isInteger(n)||n<1||n>20){error('Page count must be a whole number from 1 to 20.',controls.pages);return null}if(!d.cast){error('Please describe the cast.',controls.cast);return null}if(!d.artStyle){error('Please choose an art style.',controls.artStyle);return null}if(d.artStyle==='custom'&&!d.customStyle){error('Please describe your custom art style.',controls.customStyle);return null}if(!d.tone){error('Please enter the tone.',controls.tone);return null}if(d.language==='custom'&&!d.customLanguage){error('Please enter your custom language instructions.',controls.customLanguage);return null}d.pageCount=n;d.styleLabel=d.artStyle==='custom'?d.customStyle:d.artStyle;const entry=STYLES.find(s=>s[1]===d.artStyle);d.styleDescription=entry?`${entry[1]} — ${entry[2]}`:`Custom Art Style — ${d.customStyle}`;d.languageLabel=d.language==='custom'?d.customLanguage:d.language;return d}
+function makeScript(d){return `You are the Graphic Novel Designer, an expert Scriptwriter and Visual Director. Turn the concept below into a professional, formatted graphic novel script — ready to paste into Gemini and then use as a source for NotebookLM Studio Slides.
+
+Your Unique Capability: You structure scripts specifically to be translated into visual art by AI image generators. AI image models may not remember previous panels, so rigidly enforce visual consistency by re-describing characters in full in every single panel.
+
+MY ANSWERS (skip the interview — generate directly from these, don't ask follow-up questions)
+Story Concept [PARTS: Aim]: ${d.concept}
+Target Audience [PARTS: Recipient]: ${d.audience}
+Page Count [PARTS: Structure]: ${d.pageCount} ${d.pageCount===1?'page':'pages'}
+Cast [PARTS: Theme]: ${d.cast}
+Art Style [PARTS: Structure]: ${d.styleDescription}
+Tone [PARTS: Persona]: ${d.tone}
+Language [PARTS: Persona]: ${d.languageLabel}
+
+
+${STYLE_DB}
+
+
+The Scripting Rules (Strict Adherence)
+
+The "Amnesia" Rule (CRITICAL): You MUST re-describe each character's physical appearance in every single panel prompt.
+Bad: "Leo looks scared." Good: "Leo (messy black hair, red star t-shirt, blue shorts) looks scared."
+
+State Changes: If a character gets dirty or changes clothes, update the description and repeat the new description in all subsequent panels.
+
+Flexible Layout and Format: Do not assume a mandatory 16:9 canvas. Design page and panel layouts to adapt to the presentation or video format chosen during rendering. Use explicit layout terms suited to the scene, such as "Wide Panoramic," "Split Screen," "Three vertical columns," "Stacked panels," and "Inset panel." Keep critical characters, captions, and dialogue safe from cropping; favor readable composition on mobile screens.
+
+Content Safety: Strictly adhere to the target audience above. No smoking, drugs, alcohol or sexual themes for elementary/middle-school audiences. Violence must be implied or cartoonish unless the audience is explicitly Adult/Historical.
+
+Story Continuity: Maintain character identities, recurring props, setting details, causal sequence and any important visual motifs across pages. Honor the requested plot and final reveal. Do not invent changes to the core story that contradict the concept.
+
+Accuracy for Educational Stories: If the concept teaches a real-world topic, keep facts correct, avoid misleading simplifications and use age-appropriate explanations.
+
+Page Count: Generate exactly ${d.pageCount} numbered story ${d.pageCount===1?'page':'pages'}, plus one separately labeled cover page. Every page must have at least one panel; use the number of panels appropriate to that scene and audience. Do not silently add or remove story pages.
+
+Language: Write captions, dialogue and any visible text in ${d.languageLabel}. Respect the user's tone instructions. Keep on-image text concise and legible.
+
+
+The Output Format
+
+Generate the script in this Markdown format. Clearly distinguish "Visual Prompts" from "Story Text" within each panel.
+
+[COVER PAGE]
+Title: [Title]
+Visual Description: [Highly detailed visual prompt establishing genre/style. Fully describe main characters and setting. Keep framing adaptable to the eventual output format.]
+
+[PAGE X]
+Layout Note: [Page structure, e.g. "3 Vertical Panels" or "Stacked Panels"]
+Style Note: [Chosen Art Style and its specific keywords]
+
+[PANEL X]
+Shot Type & Angle: [e.g. Dutch Angle, Extreme Close-Up, Bird's Eye View]
+Visual Description: [The image prompt]
+Subject: [FULL REPEATED CHARACTER DESCRIPTION] performing an action
+Setting: [Background details]
+Lighting/Mood: [e.g. "Harsh neon lighting," "Soft morning sun"]
+Story Text:
+Caption: [Narrative text, or "None"]
+Dialogue ([Character]): "[Spoken text, or None]"
+SFX: [Sound effects, or "None"]
+
+
+EXECUTION
+
+Generate the full script now, directly, using the answers and rules above — no further questions needed.`}
+function makeSlides(d){return `Retell the story as a graphic novel.\nMake the art style ${d.styleLabel} for my audience ${d.audience}.`}
+$('promptForm').addEventListener('submit',e=>{e.preventDefault();clearError();const d=getData();if(!d)return;const script=makeScript(d),slides=makeSlides(d);$('scriptOutput').textContent=script;$('slidesOutput').textContent=slides;$('scriptCount').textContent=script.length.toLocaleString()+' characters';$('outputs').classList.remove('hidden');hasOutputs=true;$('outputs').scrollIntoView({behavior:'smooth',block:'start'});showToast('Both prompts generated.')});
+async function copyText(text){if(!text)return;try{if(navigator.clipboard&&window.isSecureContext){await navigator.clipboard.writeText(text)}else{const area=document.createElement('textarea');area.value=text;area.style.position='fixed';area.style.left='-9999px';document.body.appendChild(area);area.select();const ok=document.execCommand('copy');area.remove();if(!ok)throw Error('Clipboard not available')}showToast('Copied to clipboard!')}catch(err){showToast('Copy unavailable — select the prompt text manually.')}}
+$('copyScript').addEventListener('click',()=>copyText($('scriptOutput').textContent));
+$('copySlides').addEventListener('click',()=>copyText($('slidesOutput').textContent));
+updateCustomFields();
+</script>
+</body>
+</html>
